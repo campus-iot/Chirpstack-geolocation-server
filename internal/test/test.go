@@ -15,6 +15,7 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	"github.com/brocaar/chirpstack-geolocation-server/internal/backend/collos"
+	"github.com/brocaar/chirpstack-geolocation-server/internal/backend/willy"
 	"github.com/brocaar/chirpstack-geolocation-server/internal/backend/loracloud"
 	"github.com/brocaar/chirpstack-geolocation-server/internal/config"
 	geo "github.com/brocaar/chirpstack-api/go/v3/geo"
@@ -28,6 +29,8 @@ func ResolveTDOA(logDir string) error {
 	switch config.C.GeoServer.Backend.Type {
 	case "collos":
 		backend, err = collos.NewBackend(config.C)
+	case "willy":
+		backend, err = willy.NewBackend(config.C)
 	case "lora_cloud":
 		backend, err = loracloud.NewBackend(config.C)
 	}
@@ -110,6 +113,8 @@ func ResolveMultiFrameTDOA(logDir string) error {
 	switch config.C.GeoServer.Backend.Type {
 	case "collos":
 		backend, err = collos.NewBackend(config.C)
+	case "willy":
+		backend, err = willy.NewBackend(config.C)
 	case "lora_cloud":
 		backend, err = loracloud.NewBackend(config.C)
 	}

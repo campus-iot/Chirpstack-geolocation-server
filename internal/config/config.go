@@ -29,6 +29,11 @@ type Config struct {
 				RequestTimeout  time.Duration `mapstructure:"request_timeout"`
 			} `mapstructure:"collos"`
 
+			Willy struct {
+				SubscriptionKey string       `mapstructure:"subscription_key"`
+				RequestTimeout  time.Duration `mapstructure:"request_timeout"`
+			} `mapstructure:"willy"`
+	
 			LoRaCloud struct {
 				URI            string        `mapstructure:"uri"`
 				Token          string        `mapstructure:"token"`

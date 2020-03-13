@@ -17,6 +17,7 @@ import (
 	"google.golang.org/grpc/credentials"
 
 	"github.com/brocaar/chirpstack-geolocation-server/internal/backend/collos"
+	"github.com/brocaar/chirpstack-geolocation-server/internal/backend/willy"
 	"github.com/brocaar/chirpstack-geolocation-server/internal/backend/logger"
 	"github.com/brocaar/chirpstack-geolocation-server/internal/backend/loracloud"
 	"github.com/brocaar/chirpstack-geolocation-server/internal/config"
@@ -28,6 +29,8 @@ func Setup(c config.Config) error {
 	var err error
 
 	switch c.GeoServer.Backend.Type {
+	case "willy":
+		b, err = willy.NewBackend(c)
 	case "collos":
 		b, err = collos.NewBackend(c)
 	case "lora_cloud":
